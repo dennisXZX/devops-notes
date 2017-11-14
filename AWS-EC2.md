@@ -1,8 +1,8 @@
 ## EC2 (Elastic Compute Cloud)
 
-##### Deploy a Laravel to EC2
+##### Deploy a Laravel app to EC2
 
-- Create a new EC2 instance and choose an Amazon Machine Image of your choice
+- Create a new EC2 instance and choose an Amazon Machine Image
 - Generate a key pair (public and private keys) which allows you to connect to your instance securely
 
 You should store your ssh keys in `/Users/$USERNAME/.ssh/` and set the directory permissions to `700` (drwx------).
@@ -47,7 +47,7 @@ Now you should see a homepage if you visit your public IP
 sudo usermod -a -G apache ec2-user
 ```
 
-- Change your ownership of your Laravel project to apache user and group
+- Change the ownership of your Laravel project to apache user and group
 
 ```
 sudo chown -fR apache:apache project_folder
@@ -56,10 +56,9 @@ sudo chown -fR apache:apache project_folder
 - Change the document root setting in Apache httpconf file
 
 ```
+// change DocumentRoot to the public folder of your Laravel project
+// change AllowOverride to All
 sudo vi /etc/httpd/conf/httpd.conf
-
-Change DocumentRoot to the public folder of your Laravel project
-Change AllowOverride to All
 
 // restart your Apache server
 sudo service httpd restart
@@ -68,19 +67,19 @@ sudo service httpd restart
 - Install Composer
 
 ```
-// Run these following commands to download and install Composer
+// run these following commands to download and install Composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 
-// Set Composer to be accessed globally
+// set Composer to be accessed globally
 sudo mv composer.phar /usr/local/bin/composer
 ```
 
 - Install project dependencies by running `composer install`
 
-- Create a `.env` for the Laravel project
+- Create a `.env` config file for the Laravel project
 
 ```
 sudo cp .env.example .env
