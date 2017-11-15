@@ -71,7 +71,7 @@ DocumentRoot "/var/www/html/laravel-lms-api/public"
 #
 # AllowOverride controls what directives may be placed in .htaccess files.
 # It can be "All", "None", or any combination of the keywords:
-#   Options FileInfo AuthConfig Limit
+# Options FileInfo AuthConfig Limit
 #
 AllowOverride All
 
