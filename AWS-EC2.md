@@ -53,12 +53,27 @@ sudo usermod -a -G apache ec2-user
 sudo chown -fR apache:apache project_folder
 ```
 
-- Change the document root setting in Apache httpconf file
+- Change the document root setting in Apache httpconf file by running `sudo vi /etc/httpd/conf/httpd.conf`
 
 ```
 // change DocumentRoot to the public folder of your Laravel project
+DocumentRoot "/var/www/html/laravel-lms-api/public"
+
+// enable cross-origin resource sharing on apache
+<Directory "/var/www/">
+ AllowOverride None
+ # Allow open access:
+ Require all granted
+ Header set Access-Control-Allow-Origin "*"
+</Directory>
+
 // change AllowOverride to All
-sudo vi /etc/httpd/conf/httpd.conf
+#
+# AllowOverride controls what directives may be placed in .htaccess files.
+# It can be "All", "None", or any combination of the keywords:
+#   Options FileInfo AuthConfig Limit
+#
+AllowOverride All
 
 // restart your Apache server
 sudo service httpd restart
