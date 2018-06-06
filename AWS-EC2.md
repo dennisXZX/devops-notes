@@ -1,6 +1,6 @@
 ## EC2 (Elastic Compute Cloud)
 
-##### Deploy a Laravel app to EC2
+#### Deploy a Laravel app to EC2
 
 - Create a new EC2 instance and choose an Amazon Machine Image
 - Generate a key pair (public and private keys) which allows you to connect to your instance securely
