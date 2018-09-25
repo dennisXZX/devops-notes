@@ -12,7 +12,7 @@ Once you have docker installed on your machine, run `docker version` to check th
 
 `docker start container_id` run the startup command of the instance
 
-`docker run image_name` is equal to `docker create` + `docker start`
+`docker run -d image_name` is equal to `docker create` + `docker start`. Use `-d` flag to run containers in the background
 
 `docker ps` list all running containers 
 
@@ -53,7 +53,7 @@ CMD ["redis-server"]
 
 2. Build and tag the image by running `docker build -t docker_id/project_name:latest .` in the docker image folder.
 
-#### Build a Node.js app using Docker
+#### Build a simple Node.js app
 
 Create a `Dockerfile` as follows:
 
@@ -61,17 +61,67 @@ Create a `Dockerfile` as follows:
 # use an existing docker image as a base
 FROM node:alpine
 
-# copy everything from local machine to the container
+# set the working directory, any following command will be executed relative this path
+WORKDIR /usr/app
+
+# copy the package.json from local machine to the container
+# so that even you change your code NPM will not re-install all your packages
 # first argument is path relative to build context
 # second argument is path inside the container
-COPY ./ ./
+COPY ./package.json ./
 # download and install dependencies
 RUN npm install
 
+# copy everything from local machine to the container
+COPY ./ ./
+
 # set up startup commands
-CMD ["npm start"]
+CMD ["npm", "start"]
 ```
+
+Run `docker build -t dennisxiao/simpleweb .` to build the docker image.
 
 When the docker image is successfully built, run `docker run -p 5000:8080 image_name`.
 
 The `-p 8080:8080` flag maps the incoming requests to localhost to the port inside the container.
+
+#### Build a visitor counter app
+
+Architecture: One Redis docker is used to store the visitor count, while you can scale up the Node.js docker to handle more traffic.
+
+```
+Node.js Docker ---> |------------|
+Node.js Docker ---> |Redis Docker|
+Node.js Docker ---> |____________|
+```
+
+1. Create a `Dockerfile` with the same setting as the simple Node.js app
+
+2. Run `docker build -t dennisxiao/simpleweb .` to build the docker image
+
+3. Run `docker run redis` to run a Redis docker container
+
+4. In order for the Node.js container to communicate with the Redis docker, we need to use `docker-compose`. Create a `docker-compose.yml` file with the following content.
+
+```
+version: '3'
+
+services: 
+  redis-server:
+    image: 'redis'
+  node-app:
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+```
+
+Then you can use `docker-compose up` to launch all containers, or `docker-compose up --build` to build the image and launch all containers.
+
+#### Docker compose
+
+`docker-compose up -d` run all the containers in the background
+
+`docker-compose down` shut down all the containers
+
+`docker-compose ps` list all the running containers
