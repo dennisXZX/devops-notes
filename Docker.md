@@ -8,6 +8,12 @@ Docker creates a virtual machine and installs a Linux system on it behind the sc
 
 Once you have docker installed on your machine, run `docker version` to check the docker client and docker server info. Then run `docker run hello-world` to see if docker works properly. Docker client would tell docker server to spin up a new container (an instance of hello-world image), the latter would first check the image cache in your local machine to see if you already have the above-mentioned image. The docker server would reach out the docker hub to grab the image if you don't have one ready to serve.
 
+`docker search image_name` search docker image on docker hub
+
+`docker pull image_name` pull the docker image from docker hub
+
+`docker images` list all the docker images on your machine
+
 `docker create image_name` create an instance of the image
 
 `docker start container_id` run the startup command of the instance
@@ -97,11 +103,9 @@ Node.js Docker ---> |____________|
 
 1. Create a `Dockerfile` with the same setting as the simple Node.js app
 
-2. Run `docker build -t dennisxiao/simpleweb .` to build the docker image
+2. Run `docker build -t dennisxiao/visit .` to build the docker image
 
-3. Run `docker run redis` to run a Redis docker container
-
-4. In order for the Node.js container to communicate with the Redis docker, we need to use `docker-compose`. Create a `docker-compose.yml` file with the following content.
+3. In order for the Node.js container to communicate with the Redis docker, we need to use `docker-compose`. Create a `docker-compose.yml` file with the following content.
 
 ```
 version: '3'
