@@ -2,11 +2,44 @@
 
 #### Fundamentals
 
+[CNCF Cloud Native Interactive Landscape](https://landscape.cncf.io/format=landscape)
+
 <img src="./images/docker.jpg" width="640" height="380" alt="docker vs hypervisor">
 
 Docker creates a virtual machine and installs a Linux system on it behind the scene, so all the future containers will be run on this settings.
 
-Once you have docker installed on your machine, run `docker version` to check the docker client and docker server info. Then run `docker run hello-world` to see if docker works properly. Docker client would tell docker server to spin up a new container (an instance of hello-world image), the latter would first check the image cache in your local machine to see if you already have the above-mentioned image. The docker server would reach out the docker hub to grab the image if you don't have one ready to serve.
+Once you have docker installed on your machine, run `docker version / docker info` to check the docker info. Then run `docker run hello-world` to see if docker works properly. Docker client would tell docker server to spin up a new container (an instance of hello-world image), the latter would first check the image cache in your local machine to see if you already have the above-mentioned image. The docker server would reach out the docker hub to grab the image if you don't have one ready to serve.
+
+#### Container
+
+`docker container COMMAND --help` gets all the options for a particular command
+
+`docker container run --publish 8080:80 nginx:latest` to spin up a container off the 'nginx' image
+
+Here is what really happens behind the sciene:
+
+1. Looks for the 'nginx' image locally in image cache first
+2. Then looks in remote image repository, downloads the latest version of 'nginx:latest' from Docker Hub
+3. Create a new container from that image and prepares to start
+4. Gives the container a virtual IP on a private network inside docker engine
+5. Opens up port 8080 on the host and forwards to port 80 in the container
+6. Starts the container by using commands specified in the image `Dockerfile`
+
+`docker container run` always starts a new container, `--detach | -d` runs the container in the background, `--name CONTAINER_NAME` assigns a name to the container
+
+`docker container start` to start an existing stopped container
+
+`docker container ls` lists all the running containers, `-a` flag to list all created containers
+
+`docker container stop CONTAINER_NAME` stops a runningn container
+
+`docker container logs CONTAINER_NAME` shows logs for a container, `-f` flag to follow log output
+
+`docker container rm CONTAINER_NAME` removes a container, add `-f` flag to remove a running container
+
+`docker top CONTAINER_NAME` lists running processes in a specific container
+
+#### Image
 
 `docker search image_name` search docker image on docker hub
 
