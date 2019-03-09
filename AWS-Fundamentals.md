@@ -1,0 +1,33 @@
+### AWS Fundamentals
+
+- A region is a physical location in the world which consists of two or more Availability Zones (AZ).
+- An AZ is one or more discrete data center
+- Edge Location is endpoint for AWS which is used for caching content.
+
+#### Identity Access Management (IAM)
+
+- IAM is universal. It does not apply to regions at this time
+
+- Always set up multifactor authentication on your root account using `Google Authenticator`
+
+- The 'root account' is simply the account created when first setup your AWS account. It has complete Admin access.
+
+- New users have no permissions when first created
+
+- New users are assigned `Access Key ID` and `Secret Access Keys` when first created, which can be used programatically access AWS (via APIs and command line). There are two different ways to access AWS, console access (via user and password) and programmatic access (via access key id). 
+
+- A policy defines the AWS permissions that you can assign to a user, group, or role. 
+
+- A role is to give entities permissions so that they act like users.
+
+#### CloudWatch
+
+- Concerned mainly with what's happening with AWS resources so you can respond to it.
+
+#### CloudTrail
+
+- Concerned mainly with 'who did what on AWS', for example, someone logged in from the AWS console, or someone shut down an EC2.
+
+- Concerned with people within your account
+
+- CloudTrail is a service that enables governance, compliance, operational auditing, and rish auditing of your AWS account
