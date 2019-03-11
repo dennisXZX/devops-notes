@@ -31,3 +31,11 @@
 - Concerned with people within your account
 
 - CloudTrail is a service that enables governance, compliance, operational auditing, and rish auditing of your AWS account
+
+#### S3 (Simple Storage Service)
+
+- S3 is object based, which allows you to upload files (up to 5TB per file)
+
+- A bucket is just like a folder, which needs to be unique globally. Each bucket you create would have a URL.
+
+- When you upload a file to S3, you will receive a HTTP 200 code if the upload was successful.
