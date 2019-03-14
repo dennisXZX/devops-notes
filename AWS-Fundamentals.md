@@ -1,10 +1,11 @@
-### AWS Fundamentals
+## AWS Fundamentals
 
-- A region is a physical location in the world which consists of two or more Availability Zones (AZ).
+- A region is a physical location in the world which consists of two or more Availability Zones (AZ)
 - An AZ is one or more discrete data center
-- Edge Location is endpoint for AWS which is used for caching content.
+- Edge Location (CloudFront) is endpoint for AWS which is used for caching content
+- Install AWS CLI bundled to programmatically connect to AWS
 
-#### Identity Access Management (IAM)
+### Identity Access Management (IAM)
 
 - IAM is universal. It does not apply to regions at this time
 
@@ -20,22 +21,38 @@
 
 - A role is to give entities permissions so that they act like users.
 
-#### CloudWatch
+### CloudWatch
 
 - Concerned mainly with what's happening with AWS resources so you can respond to it.
 
-#### CloudTrail
+### CloudTrail
 
 - Concerned mainly with 'who did what on AWS', for example, someone logged in from the AWS console, or someone shut down an EC2.
 
 - Concerned with people within your account
 
-- CloudTrail is a service that enables governance, compliance, operational auditing, and rish auditing of your AWS account
+- CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account
 
-#### S3 (Simple Storage Service)
+### S3 (Simple Storage Service)
 
 - S3 is object based, which allows you to upload files (up to 5TB per file)
 
 - A bucket is just like a folder, which needs to be unique globally. Each bucket you create would have a URL.
 
-- When you upload a file to S3, you will receive a HTTP 200 code if the upload was successful.
+- When you upload a file to S3, you will receive an HTTP 200 code if the upload was successful.
+
+#### Cross Region Replication
+
+- Versioning must be enabled on both the source and destination buckets
+
+- Files in an existing bucket are not replicated automatically. You need to copy them using command line `aws s3 cp --recursive s3://testbucket-by-dennis-versioning s3://test-by-dennis-replication-sydney`. All subsequent updated files will be replicated automatically
+
+- Delete markers are NOT replicated
+
+#### Lifecycle Management
+
+- Can be used in conjunction with versioning
+
+- Can be applied to current versions and previous versions
+
+- Transition to the Standard - Infrequent Access (IA) Storage Class 30 days after creation date, archive to Glacier Storage Class 30 days after IA.
