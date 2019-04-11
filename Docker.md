@@ -6,15 +6,15 @@
 
 <img src="./images/docker.jpg" width="640" height="380" alt="docker vs hypervisor">
 
-For Mac/Windows, Docker creates a virtual machine and installs a Linux system on it behind the scene, so all the future containers will be run on this settings. You would need to connect to the Docker VM itself first to see the running processes (`ps aux`).
+For Mac/Windows, Docker creates a virtual machine and installs a Linux system on it behind the scene, so all the future containers will be running on this settings. You would need to connect to the Docker VM itself first to see the running processes (`ps aux`).
 
-Once you have docker installed on your machine, run `docker version / docker info` to check the docker info. Then run `docker run hello-world` to see if docker works properly. Docker client would tell docker server to spin up a new container (an instance of 'hello-world' image), the latter would first check the image cache in your local machine to see if you already have the above-mentioned image. The docker server would reach out the docker hub to grab the image if you don't have one ready to serve.
+Once you have docker installed on your machine, run `docker version / docker info` to check the docker info, or `docker` to find out all the possible commands. Then run `docker run hello-world` to see if docker works properly. Docker client would tell docker server to spin up a new container (an instance of 'hello-world' image), the latter would first check the image cache in your local machine to see if you already have the above-mentioned image. The docker server would reach out the docker hub to grab the image if you don't have one ready to serve.
 
 #### Container
 
 `docker container COMMAND --help` gets all the options for a particular command
 
-`docker container run --publish 8080:80 --name webhost --env NGINX_ROOT_PASSWORD=yes nginx:latest` to spin up a container off the 'nginx' image
+`docker container run --publish 8080:80 --name webhost --network my_app_net --env NGINX_ROOT_PASSWORD=yes nginx:latest` to spin up a container off the 'nginx' image and assign it to my_app_net private network
 
 Here is what really happens behind the sciene:
 
@@ -25,7 +25,7 @@ Here is what really happens behind the sciene:
 5. Opens up port 8080 on the host and forwards to port 80 in the container
 6. Starts the container by using commands specified in the image `Dockerfile`
 
-`docker container run CONTAINER_NAME` always starts a new container, `--detach | -d` runs the container in the background, `--name CONTAINER_NAME` assigns a name to the container, `--env` adds environment variable, `-it` starts new container interactively
+`docker container run CONTAINER_NAME` always starts a new container from the image you specify. `--detach | -d` runs the container in the background, `--name CONTAINER_NAME` assigns a name to the container, `--env` adds environment variable, `-it` starts new container interactively
 
 `docker container run -it --name proxy nginx bash`, starts a 'nginx' container with a bash command
 
@@ -47,35 +47,45 @@ Here is what really happens behind the sciene:
 
 `docker container stats` shows live performance data for all containers
 
+#### Network
+
+`docker network ls` lists all the private networks
+
+`docker network inspect NETWORK_NAME` inspects a private network
+
+`docker network create NETWORK_NAME` creates a private network
+
+`docker network connect NETWORK_NAME CONTAINER_NAME` assigns the container to a new private network
+
 #### Image
 
-`docker search image_name` search docker image on docker hub
+`docker search IMAGE_NAME` search docker image on docker hub
 
-`docker pull image_name` pull the docker image from docker hub
+`docker pull IMAGE_NAME` pull the docker image from docker hub
 
-`docker images` list all the docker images on your machine
+`docker image ls` list all the docker images on your machine
 
-`docker create image_name` create an instance of the image
+`docker create IMAGE_NAME` create an instance of the image
 
-`docker start container_id` run the startup command of the instance
+`docker start CONTAINER_NAME` run the startup command of the instance
 
-`docker run -d image_name` is equal to `docker create` + `docker start`. Use `-d` flag to run containers in the background
+`docker run -d IMAGE_NAME` is equal to `docker create` + `docker start`. Use `-d` flag to run containers in the background
 
 `docker ps` list all running containers 
 
 `docker ps --all` list all created containers
 
-`docker stop container_id` tell a running container to shut itself down
+`docker stop CONTAINER_NAME` tell a running container to shut itself down
 
-`docker kill container_id` kill a running container right away
+`docker kill CONTAINER_NAME` kill a running container right away
 
 `docker system prune` remove all stopped containers, dangling images and build cache
 
-`docker logs container_id` show all the logs emitted by a container
+`docker logs CONTAINER_NAME` show all the logs emitted by a container
 
-`docker exec -it container_id sh` get into the shell of the container
+`docker exec -it CONTAINER_NAME sh` get into the shell of the container
 
-`docker exec -it container_id command` to run a command inside a container
+`docker exec -it CONTAINER_NAME command` to run a command inside a container
 
 For example, you can run `redis-cli` in a Redis container by `docker exec -it 093b6e72ff2b redis-cli`
 
