@@ -91,6 +91,10 @@ For example, you can run `redis-cli` in a Redis container by `docker exec -it 09
 
 The `-i` flag allows us to provide input from terminal to standard input of the running process in the container
 
+#### Build
+
+`docker build -t=IMAGE_NAME:v1.0.0 .` build an image using what's in the current folder
+
 #### Create a docker image
 
 1. Create a Dockerfile
