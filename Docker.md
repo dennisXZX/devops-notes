@@ -75,7 +75,7 @@ Here is what really happens behind the sciene:
 
 `docker ps --all` list all created containers
 
-`docker stop CONTAINER_NAME` tell a running container to shut itself down
+`docker stop CONTAINER_NAME` tell a running container to shut itself down (give the process a chance to do some clean up work)
 
 `docker kill CONTAINER_NAME` kill a running container right away
 
