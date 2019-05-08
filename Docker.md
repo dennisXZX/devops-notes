@@ -33,7 +33,9 @@ Here is what really happens behind the sciene:
 
 `docker container start CONTAINER_NAME` starts an existing stopped container, `-ai` flag to get into the container standard input
 
-`docker container stop CONTAINER_NAME` stops a runningn container
+`docker container stop CONTAINER_NAME` stops a running container
+
+`docker container stop / rm $(docker container ls -aq)` to stop / remove all running containers
 
 `docker container ls` lists all the running containers, `-a` flag to list all created containers
 
@@ -77,13 +79,15 @@ Here is what really happens behind the sciene:
 
 `docker stop CONTAINER_NAME` tell a running container to shut itself down (give the process a chance to do some clean up work)
 
+`docker image rm CONTAINER_NAME` to remove an image
+
 `docker kill CONTAINER_NAME` kill a running container right away
 
 `docker system prune` remove all stopped containers, dangling images and build cache
 
 `docker logs CONTAINER_NAME` show all the logs emitted by a container
 
-`docker exec -it CONTAINER_NAME sh` get into the shell of the container
+`docker exec -it CONTAINER_NAME sh` get into the shell of the container, you can exit the container by using `Ctrl P + Q` but keep the container running. Typing `exit` inside the container would also stop the container.
 
 `docker exec -it CONTAINER_NAME command` to run a command inside a container
 
