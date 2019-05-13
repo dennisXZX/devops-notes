@@ -10,7 +10,7 @@
 
 #### S3 storage Classes
 
-- S3 Standard: stored redundantly across multiple devices in multiple faciities, and is designed to sustain the loss of 2 facilities concurrently.
+- S3 Standard: stored redundantly across multiple devices in multiple facilities, and is designed to sustain the loss of 2 facilities concurrently.
 
 - S3 - IA (Infrequently Accessed): For data that is accessed less frequently, but requires rapid access when needed. Lower fee than S3, but you are charged a retrieval fee.
 
@@ -34,6 +34,14 @@ Encryption At Rest (Server Side) is provided by AWS.
 
 - Versioning's MFA Delete capability, which uses multi-factor authentication
 
+#### Lifecycle Management
+
+- Automate moving your objects between the different storage tiers
+
+- Can be used in conjunction with versioning
+
+- Can be applied to current versions and previous versions
+
 #### Cross Region Replication
 
 Cross region replication means you want to copy the content of a bucket in one region to another one.
@@ -43,11 +51,3 @@ Cross region replication means you want to copy the content of a bucket in one r
 - Files in an existing bucket are not replicated automatically. You need to copy them using command line `aws s3 cp --recursive s3://testbucket-by-dennis-versioning s3://test-by-dennis-replication-sydney`. All subsequent updated files will be replicated automatically
 
 - Delete markers are NOT replicated
-
-#### Lifecycle Management
-
-- Can be used in conjunction with versioning
-
-- Can be applied to current versions and previous versions
-
-- Transition to the Standard - Infrequent Access (IA) Storage Class 30 days after creation date, archive to Glacier Storage Class 30 days after IA.
