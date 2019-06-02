@@ -69,7 +69,7 @@ Here is what really happens behind the sciene:
 
 `docker create IMAGE_NAME` create an instance of the image
 
-`docker start CONTAINER_NAME` run the startup command of the instance
+`docker start CONTAINER_NAME` run the startup command of the instance, use `-ai` flag to attach the STDOUT/STDERR
 
 `docker run -d IMAGE_NAME` is equal to `docker create` + `docker start`. Use `-d` flag to run containers in the background
 
