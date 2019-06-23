@@ -49,6 +49,8 @@ Here is what really happens behind the sciene:
 
 `docker container stats` shows live performance data for all containers
 
+`docker cp src/. mycontainerID:/target` copy files from host to a container, or the other way around `docker cp mycontainerID:/src/. target`
+
 #### Network
 
 `docker network ls` lists all the private networks
