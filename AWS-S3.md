@@ -1,12 +1,16 @@
 ### S3 (Simple Storage Service)
 
-- S3 is object based, which allows you to upload files (up to 5TB per file). S3 is a universal namespace, which means names must be unique globally.
+- S3 is object based, which allows you to upload files (up to 5TB per file). S3 is a universal namespace, which means S3 bucket names must be unique globally.
 
 - A bucket is just like a folder, which needs to be unique globally. Each bucket you create would have a URL.
 
-- When you upload a file to S3, you will receive an HTTP 200 code if the upload was successful.
+- When you upload a file to S3, you will receive an `HTTP 200 status code` if the upload was successful.
+
+- You can turn on `MFA Delete`, so user cannot accidentally delete files in an S3 bucket.
 
 - Read after Write consistency for PUTS of new objects, eventual consistency for overwrite PUTS and DELETES (can take some time to propagate)
+
+- You are charged for S3 by `storage`, `requests`, `storage management pricing` (different storage tiers), `data transfer pricing`, `transfer acceleration` and `cross region replication pricing`.
 
 #### S3 storage Classes
 
@@ -26,13 +30,15 @@
 
 Encryption in Transit is achieved by SSL/TLS. (TLS is the new name for SSL)
 
-Encryption At Rest (Server Side) is provided by AWS.
+Encryption At Rest (Server Side Encryption) is provided by AWS.
 
 #### Versioning
 
 - Stores all versions of an object (including all writes and even if you delete an object)
 
-- Versioning's MFA Delete capability, which uses multi-factor authentication
+- Once enabled, versioning cannot be disabled, only suspended
+
+- Versioning's MFA Delete capability, which uses multi-factor authentication to add additional layer of security
 
 #### Lifecycle Management
 
