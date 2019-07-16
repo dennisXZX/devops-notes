@@ -28,7 +28,7 @@
 
 #### Encryption
 
-Encryption in Transit is achieved by SSL/TLS. (TLS is the new name for SSL)
+Encryption in Transit is achieved by SSL (Secure Sockets Layer) or TLS (Transport Layer Security). (TLS is the new name for SSL)
 
 Encryption At Rest (Server Side Encryption) is provided by AWS.
 
