@@ -1,119 +1,40 @@
-## EC2 (Elastic Compute Cloud)
+### EC2 (Elastic Compute Cloud)
 
-#### Deploy a Laravel app to EC2
+#### Fundamentals
 
-- Create a new EC2 instance and choose an Amazon Machine Image
-- Generate a key pair (public and private keys) which allows you to connect to your instance securely
+EC2 is a wb service that provides resizable compute capacity in the cloud. EC2 reduces the time required to obtain and boot new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change.
 
-You should store your ssh keys in `/Users/$USERNAME/.ssh/` and set the directory permissions to `700` (drwx------).
+- termination protection is turned off by default, you must turn it on
 
-- Launch your instance
-- Change the permissions of your private key `key.pem` to 600 and move it to a safe place.
+- on an EBS-backed instance, the default action is for the root EBS (Elastic Block Store) volume to be deleted when the instance is terminated
 
-```
-chmod 600 key.pem
-mv key.pem /Users/$USERNAME/.ssh/
-```
+- EBS Root volumes of your DEFAULT AMI cannot be encrypted. You can use a third party tool (bit locker) to encrypt the root volume, or this can be done when creating AMI in the AWS console or using the API
 
-- Connect to your instance
+- additional volumes can be encrypted
 
-```
-ssh -i key.pem ec2-user@Your_IPv4_Public_IP
-```
+#### Security group
 
-- Install necessary softwares for web server
+- all inbound traffic is blocked by default
 
-```
-sudo yum install -y httpd24 php71-* mysql-server mysql
-```
+- all outbound traffic is allowed
 
-- Add a security rule to allow inbound HTTP (port 80) connections to your instance
+- changes to Security Groups take effect immediately
 
-- Start your Apache server by using `sudo service httpd start`
+- you can have any number of EC2 instances within a secruity group
 
-Now you should see a homepage if you visit your public IP
+- you can have multiple security groups attached to EC2 instances
 
-- Start your MySQL service by running `sudo service mysqld start`
+- you cannot bloack specific IP addresses using Security Group, instead use Network Access Control Lists
 
-- Secure our MySQL by running `sudo mysql_secure_installation`
+- you can specify allow rules, but not deny rules
 
-- Install Git by running `sudo yum install git`
+__Pricing types__
 
-- Clone your Laravel repo into `/var/www/html`
+On Demand - allows you to pay a fixed rate by the hour (or by the second) with no commitment
 
-- Add `ec2-user` to apache group
+Reserved - provides you with a capacity reservation, and offer a significant discount on the hourly charge for an instance. Contract terms are 1 year or 3 year terms.
 
-```
-sudo usermod -a -G apache ec2-user
-```
+Spot - enables you to bid whatever price you want for instance capacity, providing for even greater savings if your applications have flexible start and end times. If the spot instance is terminated by Amazon EC2, you will not be charged for a partial hour of usage. However, if you terminate the instance yourself, you will be charged for any hour in which the instance ran.
 
-- Change the ownership of your Laravel project to apache user and group
+Dedicated Hosts - physical EC2 server dedicated for your use.
 
-```
-sudo chown -fR apache:apache project_folder
-```
-
-- Change the document root setting in Apache httpconf file by running `sudo vi /etc/httpd/conf/httpd.conf`
-
-```
-// change DocumentRoot to the public folder of your Laravel project
-DocumentRoot "/var/www/html/laravel-lms-api/public"
-
-// enable cross-origin resource sharing on apache
-<Directory "/var/www/">
- AllowOverride None
- # Allow open access:
- Require all granted
- Header set Access-Control-Allow-Origin "*"
-</Directory>
-
-// change AllowOverride to All
-#
-# AllowOverride controls what directives may be placed in .htaccess files.
-# It can be "All", "None", or any combination of the keywords:
-# Options FileInfo AuthConfig Limit
-#
-AllowOverride All
-
-// restart your Apache server
-sudo service httpd restart
-```
-
-- Install Composer
-
-```
-// run these following commands to download and install Composer
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
-
-// set Composer to be accessed globally
-sudo mv composer.phar /usr/local/bin/composer
-```
-
-- Install project dependencies by running `composer install`
-
-- Create a `.env` config file for the Laravel project
-
-```
-sudo cp .env.example .env
-```
-
-- Update the MySQL database, username and password in `.env` file
-
-- Log in MySQL to create a database
-
-```
-// log in MySQL
-mysql -u username -p
-
-// create a database
-CREATE DATABASE databaseName;
-```
-
-- Migrate the database by running `php artisan migrate`
-
-Now your Laravel app should be up and running! Hooray!
-
- 
