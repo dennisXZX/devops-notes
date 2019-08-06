@@ -1,4 +1,4 @@
-## Sumo Logic
+### Sumo Logic
 
 #### Fudamentals
 
@@ -25,4 +25,9 @@ _sourceCategory=Labs/Apache/Access and "Mozilla"     # metadata and keywords
 | limit 3                                            # format the result
 ``` 
 
-You can set up `Field Extraction Rules` so the data is parsed as it is injected into Sumo Logic.
+You can set up `Field Extraction Rules` so the data is parsed as it is ingested into Sumo Logic.
+
+#### Search Query
+
+- Parse JSON data using `| json auto`
+- The `nodrop` option for the parse operator allow users to include messages in your results that do not meet the pattern criteria
