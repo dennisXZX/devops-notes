@@ -2,15 +2,13 @@
 
 #### Fundamentals
 
-EC2 is a wb service that provides resizable compute capacity in the cloud. EC2 reduces the time required to obtain and boot new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change.
+EC2 is a web service that provides resizable compute capacity in the cloud. EC2 reduces the time required to obtain and boot new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change.
 
 - termination protection is turned off by default, you must turn it on
 
-- on an EBS-backed instance, the default action is for the root EBS (Elastic Block Store) volume to be deleted when the instance is terminated
+- on an EBS-backed instance, the default action is for the root EBS (Elastic Block Store) volume to be deleted when the instance is terminated, however, the additional volumes would be persisted.
 
-- EBS Root volumes of your DEFAULT AMI cannot be encrypted. You can use a third party tool (bit locker) to encrypt the root volume, or this can be done when creating AMI in the AWS console or using the API
-
-- additional volumes can be encrypted
+- Instance store volumes cannot be stopped. If the underlying host fails, you will lose your data. EBS-backed instance can be stopped. You will not lose the data on this instance if it is stopped.
 
 #### Security group
 
@@ -24,11 +22,13 @@ EC2 is a wb service that provides resizable compute capacity in the cloud. EC2 r
 
 - you can have multiple security groups attached to EC2 instances
 
-- you cannot bloack specific IP addresses using Security Group, instead use Network Access Control Lists
+- if you create an inbound rule allowing traffic in, that traffic is automatically allowed back out again
+
+- you cannot block specific IP addresses using Security Group, instead use Network Access Control Lists
 
 - you can specify allow rules, but not deny rules
 
-__Pricing types__
+#### Pricing types
 
 On Demand - allows you to pay a fixed rate by the hour (or by the second) with no commitment
 
