@@ -10,9 +10,9 @@ EC2 is a web service that provides resizable compute capacity in the cloud. EC2 
 
 - Instance store volumes cannot be stopped. If the underlying host fails, you will lose your data. EBS-backed instance can be stopped. You will not lose the data on this instance if it is stopped.
 
-#### Boot-up Script
+#### Bootstrap Script
 
-You can add boot-up script to an EC2 instance.
+You can add bootstrap script to an EC2 instance.
 
 ```bash
 #!/bin/bash
@@ -70,6 +70,20 @@ curl http://169.254.169.254/latest/user-data
 
 - you can specify allow rules, but not deny rules
 
+#### Migrating EBS
+
+- To move an EC2 volume from one AZ to another, take a snapshot of it, create an AMI from the snapshot and then use the AMI to launch the EC2 instance in a new AZ.
+
+- To move an EC2 volume from one region to another, take a snapshot of it, create an AMI from the snapshot and then copy the AMI from one region to another. Then use the copied AMI to launch a new EC2 instance in a new region.
+
+#### Placement groups
+
+- Clustered placement group - a group of instances within a single Availability Zone. Placing instances as close as possible to enjoy low network latency and high network throughput.
+
+- Spread placement group - a group of instances that are each placed on distinct underlying hardware. Mainly for individual critical EC2 instances.
+
+- Partitioned placement group - a couple of instances are grouped together to form a partition, and each partition has its own network and power source.
+
 #### Pricing types
 
 On Demand - allows you to pay a fixed rate by the hour (or by the second) with no commitment
@@ -79,4 +93,3 @@ Reserved - provides you with a capacity reservation, and offer a significant dis
 Spot - enables you to bid whatever price you want for instance capacity, providing for even greater savings if your applications have flexible start and end times. If the spot instance is terminated by Amazon EC2, you will not be charged for a partial hour of usage. However, if you terminate the instance yourself, you will be charged for any hour in which the instance ran.
 
 Dedicated Hosts - physical EC2 server dedicated for your use.
-
