@@ -10,6 +10,48 @@ EC2 is a web service that provides resizable compute capacity in the cloud. EC2 
 
 - Instance store volumes cannot be stopped. If the underlying host fails, you will lose your data. EBS-backed instance can be stopped. You will not lose the data on this instance if it is stopped.
 
+#### Boot-up Script
+
+You can add boot-up script to an EC2 instance.
+
+```bash
+#!/bin/bash
+
+# update all packages
+yum update -y
+
+# install Apache
+yum install httpd -y
+
+# start the Apache service
+service httpd start
+
+# make sure the httpd service runs after an EC2 instance reboot
+chkconfig httpd on
+
+# create a simple web page
+cd /var/www/html
+echo "<html><h1>hello world</h1></html>" > index.html
+
+# create an S3 bucket
+aws s3 mb s3://bucketName
+
+# back up the created webpage to S3 bucket
+aws s3 cp index.html s3://bucketName
+```
+
+#### User data & Meta-data
+
+You can retrieve EC2 instance meta-data and user data by using `curl`
+
+```bash
+# retrieve EC2 meta data
+curl http://169.254.169.254/latest/meta-data
+
+# retrieve EC2 user data
+curl http://169.254.169.254/latest/user-data
+```
+
 #### Security group
 
 - all inbound traffic is blocked by default
