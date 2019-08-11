@@ -1,6 +1,6 @@
 ### CloudTrail
 
-- Concerned mainly with 'who did what on AWS', for example, someone logged in from the AWS console, or someone shut down an EC2.
+- Concerned mainly with 'who did what on AWS', for example, someone logged in from the AWS console, or someone shut down an EC2 instance.
 
 - Concerned with people within your account
 
