@@ -10,14 +10,14 @@
 
 #### Wire up a WordPress app with MySQL database
 
-Launch an EC2 instance with the following boostrap scripts:
+Launch an EC2 instance with the following bootstrap scripts:
 
 ```bash
 #!/bin/bash
 
 yum install httpd php php-mysql -y
 cd /var/www/html
-wget https://wordpress.org/latest.tar.gz    # download the Wordpress zip file
+wget https://wordpress.org/latest.tar.gz    # download the WordPress zip file
 tar -xzvf latest.tar.gz                     # extract an archive
 cp -r wordpress/* /var/www/html/
 rm -rf wordpress
@@ -28,9 +28,9 @@ chkconfig httpd on                          # make sure Apache service is on aft
 service httpd start                         # start Apache service
 ```
 
-Now you can go to the EC2 instance IP address to config the WordPress app. You need to use the RDS instance endpoint as `Database Host` in the WordPress config. Then you need to use AWS CLI to edit the `wp-config.php` in `/var/www/html` directory.
+Now you can go to the EC2 instance IP address to config the WordPress app. You need to use the RDS instance endpoint as `Database Host` in the WordPress config. Then you need to SSH into the EC2 instance and edit `wp-config.php` in `/var/www/html` directory.
 
-You have got a WordPress app up and running at this point.
+Hooray! You have got a WordPress app up and running at this point.
 
 #### Aurora
 
