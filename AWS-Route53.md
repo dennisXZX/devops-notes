@@ -4,7 +4,7 @@
 
 - Simple routing - If you choose the simple routing policy, you can only have one record with multiple IP addresses. If you specify multiple values in a record, Route 53 returns all values to the user in a random order.
 
-- Weighted routing - Allow you split your traffic based on different weights assigned. For example, 10% of your traffic go to US-EAST-1 and 90% go to EU-WEST-1.
+- Weighted routing - Allow you to split your traffic based on different weights assigned. For example, 10% of your traffic go to US-EAST-1 and 90% go to EU-WEST-1.
 
 - Latency-based routing - Allow you to route your traffic based on the lowest network latency for your end user.
 
