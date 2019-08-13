@@ -28,7 +28,7 @@
 
 #### Encryption
 
-Encryption in Transit is achieved by SSL (Secure Sockets Layer) or TLS (Transport Layer Security). (TLS is the new name for SSL)
+Encryption in Transit is achieved by SSL (Secure Sockets Layer) or TLS (Transport Layer Security). TLS is the new name for SSL.
 
 Encryption At Rest (Server Side Encryption) is provided by AWS.
 
@@ -42,7 +42,7 @@ Encryption At Rest (Server Side Encryption) is provided by AWS.
 
 #### Lifecycle Management
 
-- Automate moving your objects between the different storage tiers
+- Automate moving your objects between different storage tiers
 
 - Can be used in conjunction with versioning
 
@@ -54,6 +54,6 @@ Cross region replication means you want to copy the content of a bucket in one r
 
 - Versioning must be enabled on both the source and destination buckets
 
-- Files in an existing bucket are not replicated automatically. You need to copy them using command line `aws s3 cp --recursive s3://testbucket-by-dennis-versioning s3://test-by-dennis-replication-sydney`. All subsequent updated files will be replicated automatically
+- Files in an existing bucket are not replicated automatically. You need to copy them using command line `aws s3 cp --recursive s3://originBucketName s3://replicationBucketName`. All subsequent updated files will be replicated automatically
 
 - Delete markers are NOT replicated
