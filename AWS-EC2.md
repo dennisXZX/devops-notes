@@ -62,7 +62,7 @@ curl http://169.254.169.254/latest/user-data
 
 - you can have any number of EC2 instances within a secruity group
 
-- you can have multiple security groups attached to EC2 instances
+- you can have multiple security groups attached to an EC2 instance
 
 - if you create an inbound rule allowing traffic in, that traffic is automatically allowed back out again
 
