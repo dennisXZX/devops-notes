@@ -2,7 +2,7 @@
 
 #### Hook up an EFS to multiple EC2 instances
 
-Add these boot-up scripts to EC2 instances.
+Add these bootstrap scripts to EC2 instances.
 
 ```bash
 #!/bin/bash
