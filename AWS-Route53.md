@@ -10,6 +10,8 @@
 
 - Failover routing - Failover routing is used when you want to create an active/passive set up. For example, you want your primary site to be in US-EAST-1 and secondary disaster recovery site in EU-WEST-1.
 
-- Geolocation routing - Geolocation routing lets you choose where your traffic will be sent based on the geographic location of your users.
+- Geolocation routing - Geolocation routing lets you choose where your traffic will be sent based on the geographic location of your users and, optionally, shift traffic from resources in one location to resources in another.
+
+- Geoproximity routing - Used when you want to route traffic based on the location of your resources.
 
 - Mutivalue answer routing - Let you configure Route 53 to return multiple values. This is similar to simple routing however it allows you to put health checks on each record set.
