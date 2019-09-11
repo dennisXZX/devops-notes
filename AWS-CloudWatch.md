@@ -8,4 +8,4 @@
 
 - CloudWatch Events helps you to respond to state changes in your AWS resources.
 
-- CloudWatch Logs helps you to aggregate, monitor and store logs.
+- You can also deliver events recorded from CloudTrail to CloudWatch Logs group. CloudWatch Logs aggregates logs from CloudTrail and non-AWS sources and provides interface to view and search logs.
