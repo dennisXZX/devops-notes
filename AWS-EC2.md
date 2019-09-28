@@ -10,6 +10,8 @@ EC2 is a web service that provides resizable compute capacity in the cloud. EC2 
 
 - Instance store volumes cannot be stopped. If the underlying host fails, you will lose your data. EBS-backed instance can be stopped. You will not lose the data on this instance if it is stopped.
 
+- EBS volumes are replicated by default within an Availability Zone (AZ)
+
 #### Bootstrap Script
 
 You can add bootstrap script to an EC2 instance.
