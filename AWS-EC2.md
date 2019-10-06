@@ -2,7 +2,9 @@
 
 #### Fundamentals
 
-EC2 is a web service that provides resizable compute capacity in the cloud. EC2 reduces the time required to obtain and boot new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change.
+EC2 is a web service that provides resizable compute capacity in the cloud. EC2 reduces the time required to obtain and boot new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change. An EC2 instance is just a virtual machine.
+
+- EC2 instance uses EBS volume to store operating system and other data. EBS volume is seperate from its associated EC2 instance, so it can be transferred between different EC2 instances, or continue to exist after the EC2 instance is terminated.
 
 - termination protection is turned off by default, you must turn it on
 
