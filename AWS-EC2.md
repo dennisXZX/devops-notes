@@ -4,15 +4,23 @@
 
 EC2 is a web service that provides resizable compute capacity in the cloud. EC2 reduces the time required to obtain and boot new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change. An EC2 instance is just a virtual machine.
 
-- EC2 instance uses EBS volume to store operating system and other data. EBS volume is seperate from its associated EC2 instance, so it can be transferred between different EC2 instances, or continue to exist after the EC2 instance is terminated.
+- EC2 instance uses EBS (Elastic Block Store) volume to store operating system and data. EBS volume is separate from its associated EC2 instance, so it can be transferred between different EC2 instances, or continue to exist after the EC2 instance is terminated.
 
-- termination protection is turned off by default, you must turn it on
+- Termination protection is turned off by default, you must turn it on
 
-- on an EBS-backed instance, the default action is for the root EBS (Elastic Block Store) volume to be deleted when the instance is terminated, however, the additional volumes would be persisted.
+- On an EBS-backed instance, the default action is for the root EBS volume to be deleted when the instance is terminated, however, additional volumes would be persisted.
 
 - Instance store volumes cannot be stopped. If the underlying host fails, you will lose your data. EBS-backed instance can be stopped. You will not lose the data on this instance if it is stopped.
 
 - EBS volumes are replicated by default within an Availability Zone (AZ)
+
+- You can create an image (AMI) from an running EC2 instance.
+
+#### Copy files from local machine to an EC2 instance
+
+Use `scp` to do the trick as follows:
+
+`scp -r -i <pem_file> <local_code> ec2-user@<ec2_ip>:/home/ec2-user/project-name`
 
 #### Bootstrap Script
 
