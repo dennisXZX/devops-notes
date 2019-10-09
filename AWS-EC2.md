@@ -16,6 +16,8 @@ EC2 is a web service that provides resizable compute capacity in the cloud. EC2 
 
 - You can create an image (AMI) from an running EC2 instance.
 
+- If the traffic is coming through a load balancer, the EC2 will only see the traffic is coming from the private IP of the load balaner. However, you can see the user's public IP address from the `X-Forwarded-For` header.
+
 #### Copy files from local machine to an EC2 instance
 
 Use `scp` to do the trick as follows:
