@@ -32,18 +32,20 @@
 
 #### Encryption
 
-Encryption in Transit is achieved by SSL (Secure Sockets Layer) or TLS (Transport Layer Security). TLS is the new name for SSL.
+Encryption in transit is achieved by SSL (Secure Sockets Layer) or TLS (Transport Layer Security). TLS is the new name for SSL.
 
 Encryption At Rest (Server Side Encryption) is provided by AWS.
  - S3 Managed Keys - SSE-S3
- - AWS Key Management Service Managed Keys, SSE-KMS
+ - AWS Key Management Service Managed Keys - SSE-KMS
  - Server Side Encryption with Customer Provided Keys - SSE-C
  
  Client Side Encryption - you encrypt your files before uploading to S3
  
- You can enforce the use of Server Side Encryption by using a Bucket Policy which denies any S3 PUT request which doesn't include the `x-amz-server-side-encryption` parameter in the request header.
+ You can enforce the use of Server Side Encryption by using a Bucket Policy (Policy generator) which denies any S3 PUT request which doesn't include the `x-amz-server-side-encryption` parameter in the request header.
 
 #### Versioning
+
+Versioning is enabled at the bucket level.
 
 - Stores all versions of an object (including all writes and even if you delete an object)
 
