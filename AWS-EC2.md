@@ -10,7 +10,7 @@ EC2 is a web service that provides resizable compute capacity in the cloud. EC2 
 
 - EBS volumes are replicated by default within an Availability Zone (AZ)
 
-- You can create an image (AMI) from an running EC2 instance.
+- You can create an image (AMI) from a running EC2 instance.
 
 - By default, an EC2 machine comes with a private IP for internal AWS network and a public IP for public access. When you SSH into the EC2 machine, you can't use a private IP because you are not in the same network of your EC2 instance. If your machine is stopped and then started, the public IP can change unless you use an elastic IP.
 
