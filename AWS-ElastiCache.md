@@ -1,5 +1,17 @@
 ### ElastiCache
 
+ElastiCache use cases:
+
+- DB Cache
+
+Applications queries data from ElastiCache first, if the data is not available, get from RDS and store in ElastiCache. This helps relieve load in RDS. Cache must have an invalidation strategy to make sure only the most current data is used in there.
+
+- User Session Store
+
+There are a bunch of applications running (Auto Scaling Group), user logs into any of the application. The application then writes the session data into ElastiCache. When the user hits another application, the application retrieves the session data from ElastiCache and the user is already logged in.
+
+#### Cluster engine
+
 __memcached__ (doesn't support multi-AZ)
 
 Use cases:
