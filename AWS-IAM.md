@@ -10,7 +10,7 @@
 
 - New users are assigned `Access Key ID` and `Secret Access Keys` when first created, which can be used programatically access AWS (via APIs or command line). You only get to view the generated `Access Key ID` and `Secret Access Keys` once. If you lose them, you have to regenerate them. There are two different ways to access AWS, console access (using `username` and `password`) and programmatic access (using `Access Key ID` and `Secret Access Keys`).
 
-- A policy (in JSON format) defines the AWS permissions that you can assign to a user, group or role. It consists of an effect (allow or deny), service, action and resource.
+- A policy (in JSON format) defines the AWS permissions that you can assign to a user, group or role. It consists of an effect (allow or deny), service, action and resource. You can test your policy using `IAM Policy Simulator`.
 
 - A user policy is an inline policy embedded in a user. A group policy is an inline policy embedded in a group.
 
