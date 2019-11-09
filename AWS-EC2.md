@@ -133,7 +133,7 @@ aws s3 cp index.html s3://bucketName
 
 #### User data & Meta-data
 
-You can retrieve EC2 instance meta-data and user data by using `curl`
+You can retrieve EC2 instance meta-data (info about the EC2 instance) and user data (launch script of the EC2 instance) by using `curl`
 
 ```bash
 # retrieve EC2 meta data
