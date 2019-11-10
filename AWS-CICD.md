@@ -24,3 +24,7 @@ Deploying code to EC2 fleets
 ### CodePipeline
 
 Automating our pipeline from code to Elastic Beanstalk
+
+- Each pipeline stage can create 'artifacts'
+
+- Artifacts are stored in S3 and passed on to the next stage
