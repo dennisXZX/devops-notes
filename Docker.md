@@ -25,7 +25,7 @@ Here is what really happens behind the sciene:
 5. Opens up port 8080 on the host and forwards to port 80 in the container
 6. Starts the container by using commands specified in the image `Dockerfile`
 
-`docker container run CONTAINER_NAME` always starts a new container from the image you specify. `--detach | -d` runs the container in the background, `--name CONTAINER_NAME` assigns a name to the container, `--env` adds environment variable, `-it` starts new container interactively
+`docker container run CONTAINER_NAME` always starts a new container from the image you specify. `--detach | -d` runs the container in the background, `--name CONTAINER_NAME` assigns a name to the container, `--env` adds environment variable, `-it` starts new container interactively, `--rm` removes the container automatically when it exits
 
 `docker container run -it --name proxy nginx bash`, starts a 'nginx' container with a bash command
 
@@ -62,6 +62,10 @@ Here is what really happens behind the sciene:
 `docker network connect NETWORK_NAME CONTAINER_NAME` assigns the container to a new private network
 
 #### Image
+
+`docker commit CONTAINER_ID TAG_NAME` commit your changes to create a new image
+
+`docker history IMAGE_NAME` list all the stacks / layers of an image
 
 `docker search IMAGE_NAME` search docker image on docker hub
 
