@@ -12,7 +12,7 @@ EC2 is a web service that provides resizable compute capacity in the cloud. EC2 
 
 - You can create an image (AMI) from a running EC2 instance.
 
-- By default, an EC2 machine comes with a private IP for internal AWS network and a public IP for public access. When you SSH into the EC2 machine, you can't use a private IP because you are not in the same network of your EC2 instance. If your machine is stopped and then started, the public IP can change unless you use an elastic IP.
+- By default, an EC2 machine comes with a private IP for internal AWS network and a public IP for public access. When you SSH into the EC2 machine, you can't use a private IP because you are not in the same network of your EC2 instance. If THe EC2 instance is stopped and then re-started, the public IP can change unless you attach an elastic IP to it.
 
 - Burstable instances can be amazing to handle unexpected traffic. If your instance consistently runs low on CPU credit balance, you need to move to a different kind of non-burstable instance.
 
@@ -38,9 +38,9 @@ Advantages of using a load balancer:
 
 __Application Load Balancer__
 
-Application load balancer can handle multiple apps at the same time. For example, a user visiting `Route/user` can be routed to a target group for Users application, while another user visiting `Route/search` would be routed to a target group for Search application.
+Application load balancer can handle multiple apps at the same time. For example, a user visiting `yourDomain/user` can be routed to a target group for User application (You will need to place EC2 instances into a target group), while another user visiting `yourDomain/search` would be routed to a target group for Search application. 
 
-If the traffic is coming through a load balancer, the EC2 will only see the traffic is coming from the private IP of the load balaner. However, you can see the user's public IP address from the `X-Forwarded-For` header.
+If the traffic is coming through a load balancer, EC2 instances will only see the traffic is coming from the private IP of the load balaner. However, you can see the user's public IP address from the `X-Forwarded-For` header.
 
 #### Auto Scaling Group
 
