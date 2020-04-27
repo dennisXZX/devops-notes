@@ -10,7 +10,7 @@ Applications queries data from ElastiCache first, if the data is not available i
 
 - User Session Store
 
-There are a bunch of applications running in multiple EC2 instances (within Auto Scaling Group), user logs into any of the application. The application then writes the session data into ElastiCache. When the user hits another application, the application retrieves the session data from ElastiCache to check whether the user is already logged in.
+There are a bunch of applications running in multiple EC2 instances (within Auto Scaling Group). User logs into any of the application, the application then writes the session data into ElastiCache. When the user hits another application, the application retrieves the session data from ElastiCache to check whether the user is already logged in.
 
 #### Cluster engine
 
