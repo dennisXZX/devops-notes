@@ -36,13 +36,13 @@ Advantages of using a load balancer:
 
 - Separate public traffic from private traffic. The load balancer does a connection termination and would start a new connection with the EC2 instance. So the EC2 instance would see a private IP from the load balancer.
 
-__Application Load Balancer__
+__Application Load Balancer (ALB) __
 
 Application load balancer can handle multiple apps at the same time. For example, a user visiting `yourDomain/user` can be routed to a target group for User application (You will need to place EC2 instances into a target group), while another user visiting `yourDomain/search` would be routed to a target group for Search application. 
 
 If the traffic is coming through a load balancer, EC2 instances will only see the traffic is coming from the private IP of the load balaner. However, you can see the user's public IP address from the `X-Forwarded-For` header.
 
-#### Auto Scaling Group
+#### Auto Scaling Group (ASG)
 
 The goal of an auto scaling group is to:
 
@@ -55,9 +55,11 @@ It is possible to scale an ASG based on CloudWatch alarms. An alarm monitors a m
 
 IAM roles attached to an ASG will get assigned to ECS instances within the ASG.
 
+You can place the ASG into an ALG target group, so any new EC2 instance created in the ASG will be registered in the ALG target group, so traffic will be routed to the newly created EC2 isntance.
+
 #### EBS Volume
 
-EBS is a network drive, not a physical drive. It uses the network to communicate with the instance, which means there might be a bit of latency.
+EBS is a network drive, not a physical drive. It uses network to communicate with EC2 instance to which it is attached, which means there might be a bit of latency.
 
 EC2 instance uses EBS (Elastic Block Store) volume to store operating system and data. EBS volume is separate from its associated EC2 instance, so it can be detached and attached between different EC2 instances, or continue to exist after the EC2 instance is terminated.
 
