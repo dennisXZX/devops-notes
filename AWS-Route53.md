@@ -1,6 +1,6 @@
 ### Route 53
 
-Route53 is a managed DNS (Domain Name System). DNS is a collection of rules and records which helps clients understand how to reach a server through URLs.
+Route53 is a managed DNS (Domain Name System). DNS is a collection of rules and records which helps clients understanding how to reach a server through URLs.
 
 In AWS, the most common records are:
 
@@ -9,7 +9,7 @@ In AWS, the most common records are:
 - CNAME: URL to URL
 - Alias: URL to AWS resource
 
-Prefer Alias over CNAME for AWS resource for performance reasons.
+Always prefer to use Alias over CNAME for performance reasons. For example, you can set up an Alias record to redirect a domain name (dennisxiao.com) to an Application Load Balancer DNS name.
 
 #### Routing Policy
 
