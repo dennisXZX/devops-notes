@@ -13,8 +13,8 @@
 - You are charged for S3 by `storage`, `requests`, `storage management pricing` (different storage tiers), `data transfer pricing`, `transfer acceleration` and `cross region replication pricing`.
 
 - You can set up access control to your buckets using:
- - Bucket Policies - applied at a bucket level (use policy generator to generate a bucket policy)
- - Access Control Lists - applied at an object level
+  - Bucket Policies - applied at a bucket level (use policy generator to generate a bucket policy)
+  - Access Control Lists - applied at an object level
 
 #### S3 storage Classes
 
@@ -35,11 +35,10 @@
 Encryption in transit is achieved by SSL (Secure Sockets Layer) or TLS (Transport Layer Security). TLS is the new name for SSL.
 
 Encryption At Rest (Server Side Encryption) is provided by AWS.
- - S3 Managed Keys - SSE-S3
- - AWS Key Management Service Managed Keys - SSE-KMS
- - Server Side Encryption with Customer Provided Keys - SSE-C
- 
- Client Side Encryption - you encrypt your files before uploading to S3
+ - SSE-S3: encrypts S3 objects using keys handled and managed by AWS
+ - SSE-KMS: leverage AWS Key Management Service to manage encryption keys
+ - SSE-C: when you want to manage your own encryption keys
+ - Client Side Encryption: you encrypt your files before uploading to S3, and decrypt files yourself when retrieving from S3
  
  You can enforce the use of Server Side Encryption by using a Bucket Policy (Policy generator) which denies any S3 PUT request which doesn't include the `x-amz-server-side-encryption` parameter in the request header.
 
